@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="学マスのスコア計算機">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>学マスのスコア計算機</title>
+    <style>
+        .col {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .table {
+            display: table;
+        }
+
+        .th {
+            display: table-row;
+            font-weight: bold;
+        }
+
+        .tr {
+            display: table-row;
+        }
+
+        .td {
+            display: table-cell;
+        }
+
+        .h {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="h">ステータス</div>
+        <div class="table">
+            <div class="tr">
+                <div class="td">Vo</div>
+                <div class="td">:</div>
+                <div class="td"><input class="update_status" id="Vo" type="number" min="0" step="1"></div>
+            </div>
+            <div class="tr">
+                <div class="td">Da</div>
+                <div class="td">:</div>
+                <div class="td"><input class="update_status" id="Da" type="number" min="0" step="1"></div>
+            </div>
+            <div class="tr">
+                <div class="td">Vi</div>
+                <div class="td">:</div>
+                <div class="td"><input class="update_status" id="Vi" type="number" min="0" step="1"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div>＋最終試験ボーナス</div>
+            <div>:</div>
+            <div>
+                <select id="correction" class="update_status">
+                    <option value="30" selected>
+                        <div>+30</div>
+                    </option>
+                    <option value="20">
+                        <div>+20</div>
+                    </option>
+                    <option value="10">
+                        <div>+10</div>
+                    </option>
+                    <option value="0">
+                        <div>無し（+0）</div>
+                        <div>リザルト</div>
+
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="tr">
+            <div class="td">→合計</div>
+            <div class="td">:</div>
+            <div class="td"><input readonly class="update_result" id="Sum" type="number" min="0" step="1"></div>
+        </div>
+        <div class="table">
+            <div class="tr">
+                <div class="td">最終試験順位</div>
+                <div class="td">:</div>
+                <div class="td">
+                    <select id="rank" class="update_result update_score">
+                        <option value="1700" selected>1位</option>
+                        <option value="900">2位</option>
+                        <option value="500">3位</option>
+                        <option value="0">4位~</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+
+            <div class="row">
+                <div>最終試験スコア</div>
+                <div>:</div>
+                <div><input class="update_result" id="score" type="number" min="0" step="1">pt</div>
+            </div>
+            <div class="row">
+                <div>→リザルト</div>
+                <div>:</div>
+                <div><input id="result" type="number" min="0" step="1" readonly>pt</div>
+            </div>
+        </div>
+        <br />
+
+        <div class="table">
+            <div class="tr">
+                <div class="td">評価</div>
+                <div class="td">:</div>
+                <div class="td">必要スコア</div>
+            </div>
+            <div class="tr">
+                <div class="td">S</div>
+                <div class="td">:</div>
+                <div class="td score" data-result="13001"></div>
+            </div>
+            <div class="tr">
+                <div class="td">A+</div>
+                <div class="td">:</div>
+                <div class="td score" data-result="11501"></div>
+            </div>
+            <div class="tr">
+                <div class="td">A</div>
+                <div class="td">:</div>
+                <div class="td score" data-result="10001"></div>
+            </div>
+            <div class="tr">
+                <div class="td">B+</div>
+                <div class="td">:</div>
+                <div class="td score" data-result="8001"></div>
+            </div>
+            <div class="tr">
+                <div class="td">B</div>
+                <div class="td">:</div>
+                <div class="td score" data-result="6001"></div>
+            </div>
+            <div class="tr">
+                <div class="td">C+</div>
+                <div class="td">:</div>
+                <div class="td score" data-result="5001"></div>
+            </div>
+            <div class="tr">
+                <div class="td">C</div>
+                <div class="td">:</div>
+                <div class="td score" data-result="3001"></div>
+            </div>
+            <div class="tr">
+                <div class="td">D</div>
+                <div class="td">:</div>
+                <div class="td score" data-result="0"></div>
+            </div>
+        </div>
+
+
+    </div>
+    <script>
+        // Vo,Da,Vi の合計値算出
+        function update_status() {
+
+            let Vo = parseInt(document.getElementById("Vo").value);
+            let Da = parseInt(document.getElementById("Da").value);
+            let Vi = parseInt(document.getElementById("Vi").value);
+            Vo = Vo ? Vo : 0;
+            Da = Da ? Da : 0;
+            Vi = Vi ? Vi : 0;
+
+            // 試験後のステータス上昇
+            const c = parseInt(document.getElementById("correction").value);
+            Vo = Math.min(Vo + c, 1500);
+            Da = Math.min(Da + c, 1500);
+            Vi = Math.min(Vi + c, 1500);
+
+            document.getElementById("Sum").value = Vo + Da + Vi
+            update_result()
+            update_score()
+        }
+
+        // リザルト算出
+        function update_result() {
+            const rank_score = parseInt(document.getElementById("rank").value);
+
+            let score = parseInt(document.getElementById("score").value);
+            score = score ? score : 0;
+
+            let sum = parseInt(document.getElementById("Sum").value)
+            sum = sum ? sum : 0;
+
+            document.getElementById("result").value = status_impact(sum) + rank_score + score_impact(score);
+
+        }
+
+        // ステータスのリザルト影響値
+        function status_impact(sum) {
+            return Math.floor(sum * 2.3);
+        }
+        // 最終試験スコアのリザルト影響値
+        function score_impact(score) {
+            return Math.floor(
+                range_value(0, 5000, score) * 0.3
+                + range_value(5000, 10000, score) * 0.15
+                + range_value(10000, 20000, score) * 0.08
+                + range_value(20000, 30000, score) * 0.04
+                + range_value(30000, 40000, score) * 0.02
+                + range_value(40000, Infinity, score) * 0.01
+            )
+        }
+
+        // 必要スコア算出
+        function update_score() {
+
+            const rank_score = parseInt(document.getElementById("rank").value);
+
+            let sum = parseInt(document.getElementById("Sum").value)
+            sum = sum ? sum : 0;
+            status_score = Math.floor(sum * 2.3);
+
+            document.querySelectorAll(".score").forEach(e => {
+                e.textContent = result_to_score(e.dataset.result, rank_score, status_score);
+            }
+
+            )
+        }
+        // 
+        function result_to_score(result, rank_score, status_score) {
+            let n = result - rank_score - status_score
+            return Math.ceil(
+                range_value(0, score_impact(5000), n) / 0.3
+                + range_value(score_impact(5000), score_impact(10000), n) / 0.15
+                + range_value(score_impact(10000), score_impact(20000), n) / 0.08
+                + range_value(score_impact(20000), score_impact(30000), n) / 0.04
+                + range_value(score_impact(30000), score_impact(40000), n) / 0.02
+                + range_value(score_impact(40000), Infinity, n) / 0.01
+            )
+        }
+
+        // 上限ありのminからの値
+        function range_value(min, max, score) {
+            return Math.max(Math.min(score, max) - min, 0);
+        }
+
+        window.addEventListener("load", () => {
+            update_status()
+            // update_result()
+        })
+        document.querySelectorAll("label.update_status").forEach(element => {
+            element.addEventListener("click", update_result)
+        });
+        document.querySelectorAll(".update_result").forEach(element => {
+            element.addEventListener("change", update_result)
+        });
+
+        document.querySelectorAll(".update_status").forEach(element => {
+            element.addEventListener("change", update_status)
+        });
+        document.querySelectorAll(".update_score").forEach(element => {
+            element.addEventListener("change", update_score)
+        });
+
+    </script>
+</body>
+
+</html>
