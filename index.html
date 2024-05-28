@@ -49,17 +49,17 @@
             <div class="tr">
                 <div class="td">Vo</div>
                 <div class="td">:</div>
-                <div class="td"><input class="update_status" id="Vo" type="number" min="0" step="1"></div>
+                <div class="td"><input class="update_status" id="Vo" type="number" min="0" max="1500" step="1"></div>
             </div>
             <div class="tr">
                 <div class="td">Da</div>
                 <div class="td">:</div>
-                <div class="td"><input class="update_status" id="Da" type="number" min="0" step="1"></div>
+                <div class="td"><input class="update_status" id="Da" type="number" min="0" max="1500" step="1"></div>
             </div>
             <div class="tr">
                 <div class="td">Vi</div>
                 <div class="td">:</div>
-                <div class="td"><input class="update_status" id="Vi" type="number" min="0" step="1"></div>
+                <div class="td"><input class="update_status" id="Vi" type="number" min="0" max="1500" step="1"></div>
             </div>
         </div>
         <div class="row">
@@ -69,12 +69,6 @@
                 <select id="correction" class="update_status">
                     <option value="30" selected>
                         <div>+30</div>
-                    </option>
-                    <option value="20">
-                        <div>+20</div>
-                    </option>
-                    <option value="10">
-                        <div>+10</div>
                     </option>
                     <option value="0">
                         <div>無し（+0）</div>
@@ -201,24 +195,24 @@
 
             let sum = parseInt(document.getElementById("Sum").value)
             sum = sum ? sum : 0;
-
+            console.log(sum, status_impact(sum))
             document.getElementById("result").value = status_impact(sum) + rank_score + score_impact(score);
 
         }
 
         // ステータスのリザルト影響値
         function status_impact(sum) {
-            return Math.floor(sum * 2.3);
+            return Math.floor(sum * 23 / 10);
         }
         // 最終試験スコアのリザルト影響値
         function score_impact(score) {
             return Math.floor(
-                range_value(0, 5000, score) * 0.3
-                + range_value(5000, 10000, score) * 0.15
-                + range_value(10000, 20000, score) * 0.08
-                + range_value(20000, 30000, score) * 0.04
-                + range_value(30000, 40000, score) * 0.02
-                + range_value(40000, Infinity, score) * 0.01
+                range_value(0, 5000, score) * 3 / 10
+                + range_value(5000, 10000, score) * 15 / 100
+                + range_value(10000, 20000, score) * 8 / 100
+                + range_value(20000, 30000, score) * 4 / 100
+                + range_value(30000, 40000, score) * 2 / 100
+                + range_value(40000, Infinity, score) * 1 / 100
             )
         }
 
@@ -229,7 +223,7 @@
 
             let sum = parseInt(document.getElementById("Sum").value)
             sum = sum ? sum : 0;
-            status_score = Math.floor(sum * 2.3);
+            status_score = status_impact(sum);
 
             document.querySelectorAll(".score").forEach(e => {
                 e.textContent = result_to_score(e.dataset.result, rank_score, status_score);
@@ -241,11 +235,11 @@
         function result_to_score(result, rank_score, status_score) {
             let n = result - rank_score - status_score
             return Math.ceil(
-                range_value(0, score_impact(5000), n) / 0.3
-                + range_value(score_impact(5000), score_impact(10000), n) / 0.15
-                + range_value(score_impact(10000), score_impact(20000), n) / 0.08
-                + range_value(score_impact(20000), score_impact(30000), n) / 0.04
-                + range_value(score_impact(30000), score_impact(40000), n) / 0.02
+                range_value(0, score_impact(5000), n) * 10 / 3
+                + range_value(score_impact(5000), score_impact(10000), n) * 100 / 15
+                + range_value(score_impact(10000), score_impact(20000), n) * 100 / 8
+                + range_value(score_impact(20000), score_impact(30000), n) * 100 / 4
+                + range_value(score_impact(30000), score_impact(40000), n) * 100 / 2
                 + range_value(score_impact(40000), Infinity, n) / 0.01
             )
         }
