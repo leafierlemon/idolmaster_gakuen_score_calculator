@@ -1,0 +1,148 @@
+.col {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 5px;
+}
+
+.th {
+    display: table-row;
+    font-weight: bold;
+}
+
+.tr {
+    display: table-row;
+}
+
+.td {
+    display: table-cell;
+    text-align: center;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+.h {
+    font-weight: bold;
+}
+
+
+.Vo {
+    background-color: #ffd0ff;
+}
+
+.Vo:not(input) {
+    border-color: #ffd0ff !important;
+}
+
+.Da {
+    background-color: #d0ffff;
+}
+
+.Da:not(input) {
+    border-color: #d0ffff !important;
+}
+
+.Vi {
+    background-color: #ffffd0;
+}
+
+.Vi:not(input) {
+    border-color: #ffffd0 !important;
+}
+
+.Off {
+    background-color: #d0ffd0;
+    border-color: #d0ffd0 !important;
+}
+
+.Vo.checked {
+    background-color: #ff00ff;
+    border-color: black !important;
+}
+
+.Da.checked {
+    background-color: #00ffff;
+    border-color: black !important;
+}
+
+.Vi.checked {
+    background-color: #ffff00;
+    border-color: black !important;
+}
+
+.Off.checked {
+    background-color: #00ff00;
+    border-color: black !important;
+}
+
+.inner_row {
+    text-align: center;
+}
+
+.inner_row>div {
+    float: left;
+}
+
+.inner_row:has(>:nth-child(1):last-child)>* {
+    padding: 0;
+    border-width: 2px;
+    border-style: solid;
+    width: calc(100%/1 - 9px);
+}
+
+.inner_row:has(>:nth-child(2):last-child)>* {
+    padding: 0;
+    border-width: 2px;
+    border-style: solid;
+    width: calc(100%/2 - 9px);
+}
+
+.inner_row:has(>:nth-child(3):last-child)>* {
+    padding: 0;
+    border-width: 2px;
+    border-style: solid;
+    width: calc(100%/3 - 9px);
+}
+
+.inner_row:has(>:nth-child(4):last-child)>* {
+    padding: 0;
+    border-width: 2px;
+    border-style: solid;
+    width: calc(100%/4 - 9px);
+}
+
+.base .checked {
+    border-color: black !important;
+    background-color: #d0d0ff;
+}
+
+.base :not(.checked) {
+    border-color: #d0d0ff !important;
+    background-color: #d0d0ff;
+}
+
+.checked {
+    border: 2px solid;
+}
+
+.base {
+    width: 9em;
+}
+
+.inc {
+    width: 12em;
+}
+
+.Sum {
+    width: 12em;
+}

@@ -42,6 +42,7 @@
 </head>
 
 <body>
+    <a href="./toc.html">[TOC]</a>
     <div>
         <h3>学マスのスコア計算機</h3>
         <div>ステータス</div>
@@ -116,49 +117,74 @@
 
         <div class="table">
             <div class="tr">
+                <div class="td">リザルト</div>
+                <div class="td">:</div>
                 <div class="td">評価</div>
                 <div class="td">:</div>
                 <div class="td">必要スコア</div>
             </div>
             <div class="tr">
+                <div class="td"><input id="custom_target_result" type="number" min="0" max="15900" step="1"></div>
+                <div class="td">:</div>
+                <div class="td">---</div>
+                <div class="td">:</div>
+                <div class="td score" id="custom_target_result_data" data-target-result="0"></div>
+            </div>
+            <div class="tr">
+                <div class="td">13000</div>
+                <div class="td">:</div>
                 <div class="td">S</div>
                 <div class="td">:</div>
-                <div class="td score" data-result="13000"></div>
+                <div class="td score" data-target-result="13000"></div>
             </div>
             <div class="tr">
+                <div class="td">11500</div>
+                <div class="td">:</div>
                 <div class="td">A+</div>
                 <div class="td">:</div>
-                <div class="td score" data-result="11500"></div>
+                <div class="td score" data-target-result="11500"></div>
             </div>
             <div class="tr">
+                <div class="td">10000</div>
+                <div class="td">:</div>
                 <div class="td">A</div>
                 <div class="td">:</div>
-                <div class="td score" data-result="10000"></div>
+                <div class="td score" data-target-result="10000"></div>
             </div>
             <div class="tr">
+                <div class="td">8000</div>
+                <div class="td">:</div>
                 <div class="td">B+</div>
                 <div class="td">:</div>
-                <div class="td score" data-result="8000"></div>
+                <div class="td score" data-target-result="8000"></div>
             </div>
             <div class="tr">
+                <div class="td">6000</div>
+                <div class="td">:</div>
                 <div class="td">B</div>
                 <div class="td">:</div>
-                <div class="td score" data-result="6000"></div>
+                <div class="td score" data-target-result="6000"></div>
             </div>
             <div class="tr">
+                <div class="td">5000</div>
+                <div class="td">:</div>
                 <div class="td">C+</div>
                 <div class="td">:</div>
-                <div class="td score" data-result="5000"></div>
+                <div class="td score" data-target-result="5000"></div>
             </div>
             <div class="tr">
+                <div class="td">3000</div>
+                <div class="td">:</div>
                 <div class="td">C</div>
                 <div class="td">:</div>
-                <div class="td score" data-result="3000"></div>
+                <div class="td score" data-target-result="3000"></div>
             </div>
             <div class="tr">
+                <div class="td">0</div>
+                <div class="td">:</div>
                 <div class="td">D</div>
                 <div class="td">:</div>
-                <div class="td score" data-result="0"></div>
+                <div class="td score" data-target-result="0"></div>
             </div>
         </div>
 
@@ -216,7 +242,7 @@
             )
         }
 
-        // 必要スコア算出
+        // 必要スコア更新
         function update_score() {
 
             const rank_score = parseInt(document.getElementById("rank").value);
@@ -226,12 +252,12 @@
             status_score = status_impact(sum);
 
             document.querySelectorAll(".score").forEach(e => {
-                e.textContent = result_to_score(e.dataset.result, rank_score, status_score);
+                e.textContent = result_to_score(e.dataset.targetResult, rank_score, status_score);
             }
 
             )
         }
-        // 
+        // 必要スコア算出
         function result_to_score(result, rank_score, status_score) {
             let n = result - rank_score - status_score
             return Math.ceil(
@@ -244,6 +270,13 @@
             )
         }
 
+        // 目標評価値更新
+        function update_target_result(e) {
+            document.getElementById("custom_target_result_data").dataset.targetResult = document.getElementById("custom_target_result").value;
+            update_score()
+        }
+
+
         // 上限ありのminからの値
         function range_value(min, max, score) {
             return Math.max(Math.min(score, max) - min, 0);
@@ -253,9 +286,6 @@
             update_status()
             // update_result()
         })
-        document.querySelectorAll("label.update_status").forEach(element => {
-            element.addEventListener("click", update_result)
-        });
         document.querySelectorAll(".update_result").forEach(element => {
             element.addEventListener("change", update_result)
         });
@@ -266,6 +296,8 @@
         document.querySelectorAll(".update_score").forEach(element => {
             element.addEventListener("change", update_score)
         });
+        document.getElementById("custom_target_result").addEventListener("change", update_target_result);
+
 
     </script>
 </body>
