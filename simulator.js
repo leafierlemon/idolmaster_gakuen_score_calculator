@@ -97,13 +97,23 @@ function update_sum() {
             i.forEach(i => {
                 lb += i.value ? parseInt(i.value) : 0
             })
-            sum[p]+=lb
+            sum[p] += lb
             const s = tr.querySelector(`.Sum .${p}`)
-            if (s && s.textContent) {
+            if (s) {
                 s.textContent = sum[p]
+            }
+            const sa = tr.querySelector(".SumAll>div")
+            if (sa) {
+                let sumAll = 0;
+                param.forEach((p) => {
+                    sumAll += Math.min(sa.dataset.max,sum[p])
+                })
+                sa.textContent =sumAll
             }
         })
     })
+
+
 }
 
 function update_table() {
