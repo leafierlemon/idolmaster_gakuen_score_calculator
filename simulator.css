@@ -91,6 +91,7 @@
 
 .inner_row>* {
     float: left;
+    height: 24px;
 }
 
 .inner_row:has(>:nth-child(1):last-child)>* {
@@ -134,12 +135,16 @@
     background-color: #d0d0ff;
 }
 
+.base input{
+    text-align: center;
+}
+
 .checked {
     border: 2px solid;
 }
 
 .base {
-    min-width: 96px;
+    min-width: 144px;
 }
 
 .inc {
@@ -157,6 +162,6 @@
 }
 
 
-#init>.tr>.td:first-child{
-min-width: 90px;
+#init>.tr>.td:first-child {
+    min-width: 90px;
 }

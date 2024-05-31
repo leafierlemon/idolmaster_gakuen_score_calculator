@@ -23,7 +23,13 @@ function update_inc() {
             elm_base = elm_base.querySelector(".checked")
             if (!elm_base) return;
 
-            const base_v = parseInt(elm_base.textContent)
+            // 上昇量ベースを取得
+            let base_v = elm_base.classList.contains("custom_base")?parseInt(elm_base.value):parseInt(elm_base.textContent)
+            if(!base_v){
+                base_v=0
+            }
+
+            // 
             let inc = { "Vo": base_v, "Da": base_v, "Vi": base_v, }
             const bonus = config_bonus[elm_base.dataset.bonus]
 
@@ -130,13 +136,16 @@ function init() {
     })
 
     document.querySelectorAll(".radio").forEach(elm => {
-        elm.addEventListener("click", (event) => {
+
+        elm.addEventListener("click",onchange)
+        elm.addEventListener("change",onchange)
+        function onchange(event) {
             event.target.parentNode.querySelectorAll(":scope>.radio").forEach(elm => {
                 elm.classList.remove("checked")
             })
             event.target.classList.add("checked")
             update_table()
-        })
+        }
     })
 
     document.querySelectorAll(".Others input").forEach(elm => {
