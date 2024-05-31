@@ -6,7 +6,7 @@
     <meta name="description" content="学マス育成シミュレーター">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>学マス育成シミュレーター</title>
-    
+
     <script src="./simulator.js"></script>
     <link href="./simulator.css" rel="stylesheet" />
 </head>
@@ -17,15 +17,15 @@
         <h3>学マス育成シミュレーター</h3>
         <p>
             前提など：
-            <ul>
-                <li>難易度：プロ</li>
-                <li>サポートイベントなどは「+その他」の項目で</li>
-                <li>レッスン失敗分も「+その他」の項目でマイナスの値を入れて補正</li>
-            </ul>
+        <ul>
+            <li>難易度：プロ</li>
+            <li>サポートイベントなどは「+その他」の項目で</li>
+            <li>レッスン失敗分も「+その他」の項目でマイナスの値を入れて補正</li>
+        </ul>
         </p>
 
         <div class="h">初期値・レッスン補正</div>
-        <div class="table">
+        <div class="table" id="init">
             <div class="tr">
                 <div class="td h"></div>
                 <div class="td h Vo">Vo</div>
@@ -69,21 +69,35 @@
                 <div class="td Sum">合計値</div>
             </div>
             <div class="tr">
+                <div class="td"><hr></div>
+                <div class="td"><hr></div>
+                <div class="td"><hr></div>
+                <div class="td"><hr></div>
+                <div class="td"><hr></div>
+                <div class="td"><hr></div>
+            </div>
+            <div class="tr">
                 <div class="td">1</div>
                 <div class="td">レッスン</div>
-                <div class="td base inner_row">
-                    <div class="radio checked" data-bonus="lesson">60</div>
+                <div class="td base">
+                    <div class="inner_row">
+                        <div class="radio checked" data-bonus="lesson">60 </div>
+                    </div>
                 </div>
-                <div class="td inc inner_row">
-                    <div class="td Vo radio"> - </div>
-                    <div class="td Da radio"> - </div>
-                    <div class="td Vi radio"> - </div>
-                    <div class="td Off radio checked"> - </div>
+                <div class="td inc">
+                    <div class="inner_row">
+                        <div class="td Vo radio"> - </div>
+                        <div class="td Da radio"> - </div>
+                        <div class="td Vi radio"> - </div>
+                        <div class="td Off radio checked"> - </div>
+                    </div>
                 </div>
-                <div class="td Others inner_row">
-                    <input class="Vo" type="number" min="-999" max="999" step="1">
-                    <input class="Da" type="number" min="-999" max="999" step="1">
-                    <input class="Vi" type="number" min="-999" max="999" step="1">
+                <div class="td Others">
+                    <div class="inner_row">
+                        <input class="Vo" type="number" min="-999" max="999" step="1">
+                        <input class="Da" type="number" min="-999" max="999" step="1">
+                        <input class="Vi" type="number" min="-999" max="999" step="1">
+                    </div>
                 </div>
                 <div class="td Sum inner_row">
                     <div class="Vo"> - </div>
@@ -94,19 +108,27 @@
             <div class="tr">
                 <div class="td week">2</div>
                 <div class="td">授業</div>
-                <div class="td base inner_row">
-                    <div class="radio checked" data-bonus="fix">40</div>
+                <div class="td base">
+                    <div class="inner_row">
+                        <div class="radio checked" data-bonus="fix">40</div>
+                        <div class="radio" data-bonus="fix">30</div>
+                        <div class="radio" data-bonus="fix">15</div>
+                    </div>
                 </div>
-                <div class="td inc inner_row">
-                    <div class="td Vo radio"> - </div>
-                    <div class="td Da radio"> - </div>
-                    <div class="td Vi radio"> - </div>
-                    <div class="td Off radio checked"> - </div>
+                <div class="td inc">
+                    <div class="inner_row">
+                        <div class="td Vo radio"> - </div>
+                        <div class="td Da radio"> - </div>
+                        <div class="td Vi radio"> - </div>
+                        <div class="td Off radio checked"> - </div>
+                    </div>
                 </div>
-                <div class="td Others inner_row">
-                    <input class="Vo" type="number" min="-999" max="999" step="1">
-                    <input class="Da" type="number" min="-999" max="999" step="1">
-                    <input class="Vi" type="number" min="-999" max="999" step="1">
+                <div class="td Others">
+                    <div class="inner_row">
+                        <input class="Vo" type="number" min="-999" max="999" step="1">
+                        <input class="Da" type="number" min="-999" max="999" step="1">
+                        <input class="Vi" type="number" min="-999" max="999" step="1">
+                    </div>
                 </div>
                 <div class="td Sum inner_row">
                     <div class="Vo"> - </div>
@@ -117,18 +139,24 @@
             <div class="tr">
                 <div class="td week">3</div>
                 <div class="td">---</div>
-                <div class="td base inner_row">
+                <div class="td base">
+                    <div class="inner_row">
+                    </div>
                 </div>
-                <div class="td inc inner_row">
-                    <div class="Vo"> - </div>
-                    <div class="Da"> - </div>
-                    <div class="Vi"> - </div>
-                    <div class="td Off"> - </div>
+                <div class="td inc">
+                    <div class="inner_row">
+                        <div class="Vo"> - </div>
+                        <div class="Da"> - </div>
+                        <div class="Vi"> - </div>
+                        <div class="td Off"> - </div>
+                    </div>
                 </div>
-                <div class="td Others inner_row">
-                    <input class="Vo" type="number" min="-999" max="999" step="1">
-                    <input class="Da" type="number" min="-999" max="999" step="1">
-                    <input class="Vi" type="number" min="-999" max="999" step="1">
+                <div class="td Others">
+                    <div class="inner_row">
+                        <input class="Vo" type="number" min="-999" max="999" step="1">
+                        <input class="Da" type="number" min="-999" max="999" step="1">
+                        <input class="Vi" type="number" min="-999" max="999" step="1">
+                    </div>
                 </div>
                 <div class="td Sum inner_row">
                     <div class="Vo"> - </div>
@@ -139,20 +167,26 @@
             <div class="tr">
                 <div class="td">4</div>
                 <div class="td">レッスン</div>
-                <div class="td base inner_row">
-                    <div class="radio checked" data-bonus="lesson_sp">90</div>
-                    <div class="radio" data-bonus="lesson">60</div>
+                <div class="td base">
+                    <div class="inner_row">
+                        <div class="radio checked" data-bonus="lesson_sp">90</div>
+                        <div class="radio" data-bonus="lesson">60</div>
+                    </div>
                 </div>
-                <div class="td inc inner_row">
-                    <div class="td Vo radio"> - </div>
-                    <div class="td Da radio"> - </div>
-                    <div class="td Vi radio"> - </div>
-                    <div class="td Off radio checked"> - </div>
+                <div class="td inc">
+                    <div class="inner_row">
+                        <div class="td Vo radio"> - </div>
+                        <div class="td Da radio"> - </div>
+                        <div class="td Vi radio"> - </div>
+                        <div class="td Off radio checked"> - </div>
+                    </div>
                 </div>
-                <div class="td Others inner_row">
-                    <input class="Vo" type="number" min="-999" max="999" step="1">
-                    <input class="Da" type="number" min="-999" max="999" step="1">
-                    <input class="Vi" type="number" min="-999" max="999" step="1">
+                <div class="td Others">
+                    <div class="inner_row">
+                        <input class="Vo" type="number" min="-999" max="999" step="1">
+                        <input class="Da" type="number" min="-999" max="999" step="1">
+                        <input class="Vi" type="number" min="-999" max="999" step="1">
+                    </div>
                 </div>
                 <div class="td Sum inner_row">
                     <div class="Vo"> - </div>
@@ -163,41 +197,25 @@
             <div class="tr">
                 <div class="td">5</div>
                 <div class="td">---</div>
-                <div class="td base inner_row">
+                <div class="td base">
+                    <div class="inner_row">
+                    </div>
                 </div>
-                <div class="td inc inner_row">
-                    <div class="Vo"> - </div>
-                    <div class="Da"> - </div>
-                    <div class="Vi"> - </div>
-                    <div class="td Off"> - </div>
+                <div class="td inc">
+                    <div class="inner_row">
+                        <div class="Vo"> - </div>
+                        <div class="Da"> - </div>
+                        <div class="Vi"> - </div>
+                        <div class="td Off"> - </div>
+                    </div>
+
                 </div>
-                <div class="td Others inner_row">
-                    <input class="Vo" type="number" min="-999" max="999" step="1">
-                    <input class="Da" type="number" min="-999" max="999" step="1">
-                    <input class="Vi" type="number" min="-999" max="999" step="1">
-                </div>
-                <div class="td Sum inner_row">
-                    <div class="Vo"> - </div>
-                    <div class="Da"> - </div>
-                    <div class="Vi"> - </div>
-                </div>
-            </div>
-            <div class="tr">
-                <div class="td">6</div>
-                <div class="td">追い込み（CLEAR）</div>
-                <div class="td base inner_row">
-                    <div class="radio checked" data-bonus="lesson">90</div>
-                </div>
-                <div class="td inc inner_row">
-                    <div class="td Vo radio"> - </div>
-                    <div class="td Da radio"> - </div>
-                    <div class="td Vi radio"> - </div>
-                    <div class="td Off radio checked"> - </div>
-                </div>
-                <div class="td Others inner_row">
-                    <input class="Vo" type="number" min="-999" max="999" step="1">
-                    <input class="Da" type="number" min="-999" max="999" step="1">
-                    <input class="Vi" type="number" min="-999" max="999" step="1">
+                <div class="td Others">
+                    <div class="inner_row">
+                        <input class="Vo" type="number" min="-999" max="999" step="1">
+                        <input class="Da" type="number" min="-999" max="999" step="1">
+                        <input class="Vi" type="number" min="-999" max="999" step="1">
+                    </div>
                 </div>
                 <div class="td Sum inner_row">
                     <div class="Vo"> - </div>
@@ -207,20 +225,41 @@
             </div>
             <div class="tr">
                 <div class="td">6</div>
-                <div class="td">追い込み（ボーナス）</div>
-                <div class="td base inner_row">
-                    <div class="radio checked" data-bonus="lesson">90</div>
+                <div class="td">追い込み</div>
+                <div class="td base">
+                    <div class="inner_row">
+                        <div class="radio checked" data-bonus="lesson">90</div>
+                    </div>
+                    <div class="inner_row">
+                        <div class="radio checked" data-bonus="lesson_bonus">90</div>
+                    </div>
                 </div>
-                <div class="td inc inner_row">
-                    <div class="td Vo checked"> - </div>
-                    <div class="td Da checked"> - </div>
-                    <div class="td Vi checked"> - </div>
-                    <div class="td Off"> - </div>
+
+                <div class="td inc">
+                    <div class="inner_row">
+                        <div class="td Vo radio"> - </div>
+                        <div class="td Da radio"> - </div>
+                        <div class="td Vi radio"> - </div>
+                        <div class="td Off radio checked"> - </div>
+                    </div>
+                    <div class="inner_row">
+                        <div class="td Vo checked"> - </div>
+                        <div class="td Da checked"> - </div>
+                        <div class="td Vi checked"> - </div>
+                        <div class="td Off"> - </div>
+                    </div>
                 </div>
-                <div class="td Others inner_row">
-                    <input class="Vo" type="number" min="-999" max="999" step="1">
-                    <input class="Da" type="number" min="-999" max="999" step="1">
-                    <input class="Vi" type="number" min="-999" max="999" step="1">
+                <div class="td Others">
+                    <div class="inner_row">
+                        <input class="Vo" type="number" min="-999" max="999" step="1">
+                        <input class="Da" type="number" min="-999" max="999" step="1">
+                        <input class="Vi" type="number" min="-999" max="999" step="1">
+                    </div>
+                    <div class="inner_row">
+                        <input class="Vo" type="number" min="-999" max="999" step="1">
+                        <input class="Da" type="number" min="-999" max="999" step="1">
+                        <input class="Vi" type="number" min="-999" max="999" step="1">
+                    </div>
                 </div>
                 <div class="td Sum inner_row">
                     <div class="Vo"> - </div>
@@ -231,19 +270,28 @@
             <div class="tr">
                 <div class="td">7</div>
                 <div class="td">中間試験</div>
-                <div class="td base inner_row">
-                    <div class="radio checked" data-bonus="fix">20</div>
+                <div class="td base">
+                    <div class="inner_row">
+                        <div class="radio checked" data-bonus="fix">20</div>
+                        <div class="radio" data-bonus="fix">10</div>
+                        <div class="radio" data-bonus="fix">5</div>
+                        <div class="radio" data-bonus="fix">0</div>
+                    </div>
                 </div>
-                <div class="td inc inner_row">
-                    <div class="td Vo checked"> - </div>
-                    <div class="td Da checked"> - </div>
-                    <div class="td Vi checked"> - </div>
-                    <div class="td Off"> - </div>
+                <div class="td inc">
+                    <div class="inner_row">
+                        <div class="td Vo checked"> - </div>
+                        <div class="td Da checked"> - </div>
+                        <div class="td Vi checked"> - </div>
+                        <div class="td Off"> - </div>
+                    </div>
                 </div>
-                <div class="td Others inner_row">
-                    <input class="Vo" type="number" min="-999" max="999" step="1">
-                    <input class="Da" type="number" min="-999" max="999" step="1">
-                    <input class="Vi" type="number" min="-999" max="999" step="1">
+                <div class="td Others">
+                    <div class="inner_row">
+                        <input class="Vo" type="number" min="-999" max="999" step="1">
+                        <input class="Da" type="number" min="-999" max="999" step="1">
+                        <input class="Vi" type="number" min="-999" max="999" step="1">
+                    </div>
                 </div>
                 <div class="td Sum inner_row">
                     <div class="Vo"> - </div>
@@ -252,20 +300,34 @@
                 </div>
             </div>
             <div class="tr">
+                <div class="td"><hr></div>
+                <div class="td"><hr></div>
+                <div class="td"><hr></div>
+                <div class="td"><hr></div>
+                <div class="td"><hr></div>
+                <div class="td"><hr></div>
+            </div>
+            <div class="tr">
                 <div class="td">8</div>
                 <div class="td">---</div>
-                <div class="td base inner_row">
+                <div class="td base">
+                    <div class="inner_row">
+                    </div>
                 </div>
-                <div class="td inc inner_row">
-                    <div class="Vo"> - </div>
-                    <div class="Da"> - </div>
-                    <div class="Vi"> - </div>
-                    <div class="td Off"> - </div>
+                <div class="td inc">
+                    <div class="inner_row">
+                        <div class="Vo"> - </div>
+                        <div class="Da"> - </div>
+                        <div class="Vi"> - </div>
+                        <div class="td Off"> - </div>
+                    </div>
                 </div>
-                <div class="td Others inner_row">
-                    <input class="Vo" type="number" min="-999" max="999" step="1">
-                    <input class="Da" type="number" min="-999" max="999" step="1">
-                    <input class="Vi" type="number" min="-999" max="999" step="1">
+                <div class="td Others">
+                    <div class="inner_row">
+                        <input class="Vo" type="number" min="-999" max="999" step="1">
+                        <input class="Da" type="number" min="-999" max="999" step="1">
+                        <input class="Vi" type="number" min="-999" max="999" step="1">
+                    </div>
                 </div>
                 <div class="td Sum inner_row">
                     <div class="Vo"> - </div>
@@ -276,19 +338,27 @@
             <div class="tr">
                 <div class="td week">9</div>
                 <div class="td">授業</div>
-                <div class="td base inner_row">
-                    <div class="radio checked" data-bonus="fix">80</div>
+                <div class="td base">
+                    <div class="inner_row">
+                        <div class="radio checked" data-bonus="fix">80</div>
+                        <div class="radio" data-bonus="fix">55</div>
+                        <div class="radio" data-bonus="fix">30</div>
+                    </div>
                 </div>
-                <div class="td inc inner_row">
-                    <div class="td Vo radio"> - </div>
-                    <div class="td Da radio"> - </div>
-                    <div class="td Vi radio"> - </div>
-                    <div class="td Off radio checked"> - </div>
+                <div class="td inc">
+                    <div class="inner_row">
+                        <div class="td Vo radio"> - </div>
+                        <div class="td Da radio"> - </div>
+                        <div class="td Vi radio"> - </div>
+                        <div class="td Off radio checked"> - </div>
+                    </div>
                 </div>
-                <div class="td Others inner_row">
-                    <input class="Vo" type="number" min="-999" max="999" step="1">
-                    <input class="Da" type="number" min="-999" max="999" step="1">
-                    <input class="Vi" type="number" min="-999" max="999" step="1">
+                <div class="td Others">
+                    <div class="inner_row">
+                        <input class="Vo" type="number" min="-999" max="999" step="1">
+                        <input class="Da" type="number" min="-999" max="999" step="1">
+                        <input class="Vi" type="number" min="-999" max="999" step="1">
+                    </div>
                 </div>
                 <div class="td Sum inner_row">
                     <div class="Vo"> - </div>
@@ -299,20 +369,26 @@
             <div class="tr">
                 <div class="td">10</div>
                 <div class="td">レッスン</div>
-                <div class="td base inner_row">
-                    <div class="radio checked" data-bonus="lesson_sp">170</div>
-                    <div class="radio" data-bonus="lesson">110</div>
+                <div class="td base">
+                    <div class="inner_row">
+                        <div class="radio checked" data-bonus="lesson_sp">170</div>
+                        <div class="radio" data-bonus="lesson">110</div>
+                    </div>
                 </div>
-                <div class="td inc inner_row">
-                    <div class="td Vo radio"> - </div>
-                    <div class="td Da radio"> - </div>
-                    <div class="td Vi radio"> - </div>
-                    <div class="td Off radio checked"> - </div>
+                <div class="td inc">
+                    <div class="inner_row">
+                        <div class="td Vo radio"> - </div>
+                        <div class="td Da radio"> - </div>
+                        <div class="td Vi radio"> - </div>
+                        <div class="td Off radio checked"> - </div>
+                    </div>
                 </div>
-                <div class="td Others inner_row">
-                    <input class="Vo" type="number" min="-999" max="999" step="1">
-                    <input class="Da" type="number" min="-999" max="999" step="1">
-                    <input class="Vi" type="number" min="-999" max="999" step="1">
+                <div class="td Others">
+                    <div class="inner_row">
+                        <input class="Vo" type="number" min="-999" max="999" step="1">
+                        <input class="Da" type="number" min="-999" max="999" step="1">
+                        <input class="Vi" type="number" min="-999" max="999" step="1">
+                    </div>
                 </div>
                 <div class="td Sum inner_row">
                     <div class="Vo"> - </div>
@@ -324,20 +400,27 @@
             <div class="tr">
                 <div class="td week">11</div>
                 <div class="td">授業（確率レッスン）</div>
-                <div class="td base inner_row">
-                    <div class="radio checked" data-bonus="fix">110</div>
-                    <div class="radio" data-bonus="lesson">90</div>
+                <div class="td base">
+                    <div class="inner_row">
+                        <div class="radio checked" data-bonus="fix">110</div>
+                        <div class="radio" data-bonus="fix">40</div>
+                        <div class="radio" data-bonus="lesson">90</div>
+                    </div>
                 </div>
-                <div class="td inc inner_row">
-                    <div class="td Vo radio"> - </div>
-                    <div class="td Da radio"> - </div>
-                    <div class="td Vi radio"> - </div>
-                    <div class="td Off radio checked"> - </div>
+                <div class="td inc">
+                    <div class="inner_row">
+                        <div class="td Vo radio"> - </div>
+                        <div class="td Da radio"> - </div>
+                        <div class="td Vi radio"> - </div>
+                        <div class="td Off radio checked"> - </div>
+                    </div>
                 </div>
-                <div class="td Others inner_row">
-                    <input class="Vo" type="number" min="-999" max="999" step="1">
-                    <input class="Da" type="number" min="-999" max="999" step="1">
-                    <input class="Vi" type="number" min="-999" max="999" step="1">
+                <div class="td Others">
+                    <div class="inner_row">
+                        <input class="Vo" type="number" min="-999" max="999" step="1">
+                        <input class="Da" type="number" min="-999" max="999" step="1">
+                        <input class="Vi" type="number" min="-999" max="999" step="1">
+                    </div>
                 </div>
                 <div class="td Sum inner_row">
                     <div class="Vo"> - </div>
@@ -349,20 +432,26 @@
             <div class="tr">
                 <div class="td">12</div>
                 <div class="td">レッスン</div>
-                <div class="td base inner_row">
-                    <div class="radio checked" data-bonus="lesson_sp">200</div>
-                    <div class="radio" data-bonus="lesson">120</div>
+                <div class="td base">
+                    <div class="inner_row">
+                        <div class="radio checked" data-bonus="lesson_sp">200</div>
+                        <div class="radio" data-bonus="lesson">120</div>
+                    </div>
                 </div>
-                <div class="td inc inner_row">
-                    <div class="td Vo radio"> - </div>
-                    <div class="td Da radio"> - </div>
-                    <div class="td Vi radio"> - </div>
-                    <div class="td Off radio checked"> - </div>
+                <div class="td inc">
+                    <div class="inner_row">
+                        <div class="td Vo radio"> - </div>
+                        <div class="td Da radio"> - </div>
+                        <div class="td Vi radio"> - </div>
+                        <div class="td Off radio checked"> - </div>
+                    </div>
                 </div>
-                <div class="td Others inner_row">
-                    <input class="Vo" type="number" min="-999" max="999" step="1">
-                    <input class="Da" type="number" min="-999" max="999" step="1">
-                    <input class="Vi" type="number" min="-999" max="999" step="1">
+                <div class="td Others">
+                    <div class="inner_row">
+                        <input class="Vo" type="number" min="-999" max="999" step="1">
+                        <input class="Da" type="number" min="-999" max="999" step="1">
+                        <input class="Vi" type="number" min="-999" max="999" step="1">
+                    </div>
                 </div>
                 <div class="td Sum inner_row">
                     <div class="Vo"> - </div>
@@ -374,20 +463,26 @@
             <div class="tr">
                 <div class="td">13</div>
                 <div class="td">レッスン</div>
-                <div class="td base inner_row">
-                    <div class="radio checked" data-bonus="lesson_sp">220</div>
-                    <div class="radio" data-bonus="lesson">150</div>
+                <div class="td base">
+                    <div class="inner_row">
+                        <div class="radio checked" data-bonus="lesson_sp">220</div>
+                        <div class="radio" data-bonus="lesson">150</div>
+                    </div>
                 </div>
-                <div class="td inc inner_row">
-                    <div class="td Vo radio"> - </div>
-                    <div class="td Da radio"> - </div>
-                    <div class="td Vi radio"> - </div>
-                    <div class="td Off radio checked"> - </div>
+                <div class="td inc">
+                    <div class="inner_row">
+                        <div class="td Vo radio"> - </div>
+                        <div class="td Da radio"> - </div>
+                        <div class="td Vi radio"> - </div>
+                        <div class="td Off radio checked"> - </div>
+                    </div>
                 </div>
-                <div class="td Others inner_row">
-                    <input class="Vo" type="number" min="-999" max="999" step="1">
-                    <input class="Da" type="number" min="-999" max="999" step="1">
-                    <input class="Vi" type="number" min="-999" max="999" step="1">
+                <div class="td Others">
+                    <div class="inner_row">
+                        <input class="Vo" type="number" min="-999" max="999" step="1">
+                        <input class="Da" type="number" min="-999" max="999" step="1">
+                        <input class="Vi" type="number" min="-999" max="999" step="1">
+                    </div>
                 </div>
                 <div class="td Sum inner_row">
                     <div class="Vo"> - </div>
@@ -399,41 +494,25 @@
             <div class="tr">
                 <div class="td">14</div>
                 <div class="td">---</div>
-                <div class="td base inner_row">
+                <div class="td base">
+                    <div class="inner_row">
+                    </div>
                 </div>
-                <div class="td inc inner_row">
-                    <div class="Vo"> - </div>
-                    <div class="Da"> - </div>
-                    <div class="Vi"> - </div>
-                    <div class="td Off"> - </div>
+                <div class="td inc">
+                    <div class="inner_row">
+                        <div class="Vo"> - </div>
+                        <div class="Da"> - </div>
+                        <div class="Vi"> - </div>
+                        <div class="td Off"> - </div>
+                    </div>
+
                 </div>
-                <div class="td Others inner_row">
-                    <input class="Vo" type="number" min="-999" max="999" step="1">
-                    <input class="Da" type="number" min="-999" max="999" step="1">
-                    <input class="Vi" type="number" min="-999" max="999" step="1">
-                </div>
-                <div class="td Sum inner_row">
-                    <div class="Vo"> - </div>
-                    <div class="Da"> - </div>
-                    <div class="Vi"> - </div>
-                </div>
-            </div>
-            <div class="tr">
-                <div class="td">15</div>
-                <div class="td">追い込み（CLEAR）</div>
-                <div class="td base inner_row">
-                    <div class="radio checked" data-bonus="lesson">165</div>
-                </div>
-                <div class="td inc inner_row">
-                    <div class="td Vo radio"> - </div>
-                    <div class="td Da radio"> - </div>
-                    <div class="td Vi radio"> - </div>
-                    <div class="td Off radio checked"> - </div>
-                </div>
-                <div class="td Others inner_row">
-                    <input class="Vo" type="number" min="-999" max="999" step="1">
-                    <input class="Da" type="number" min="-999" max="999" step="1">
-                    <input class="Vi" type="number" min="-999" max="999" step="1">
+                <div class="td Others">
+                    <div class="inner_row">
+                        <input class="Vo" type="number" min="-999" max="999" step="1">
+                        <input class="Da" type="number" min="-999" max="999" step="1">
+                        <input class="Vi" type="number" min="-999" max="999" step="1">
+                    </div>
                 </div>
                 <div class="td Sum inner_row">
                     <div class="Vo"> - </div>
@@ -443,20 +522,41 @@
             </div>
             <div class="tr">
                 <div class="td">15</div>
-                <div class="td">追い込み（ボーナス）</div>
-                <div class="td base inner_row">
-                    <div class="radio checked" data-bonus="lesson">145</div>
+                <div class="td">追い込み</div>
+                <div class="td base">
+                    <div class="inner_row">
+                        <div class="radio checked" data-bonus="lesson">165</div>
+                    </div>
+                    <div class="inner_row">
+                        <div class="radio checked" data-bonus="lesson_bonus">145</div>
+                    </div>
                 </div>
-                <div class="td inc inner_row">
-                    <div class="td Vo checked"> - </div>
-                    <div class="td Da checked"> - </div>
-                    <div class="td Vi checked"> - </div>
-                    <div class="td Off"> - </div>
+                <div class="td inc">
+                    <div class="inner_row">
+                        <div class="td Vo radio"> - </div>
+                        <div class="td Da radio"> - </div>
+                        <div class="td Vi radio"> - </div>
+                        <div class="td Off radio checked"> - </div>
+                    </div>
+                    <div class="inner_row">
+                        <div class="td Vo checked"> - </div>
+                        <div class="td Da checked"> - </div>
+                        <div class="td Vi checked"> - </div>
+                        <div class="td Off"> - </div>
+                    </div>
+
                 </div>
-                <div class="td Others inner_row">
-                    <input class="Vo" type="number" min="-999" max="999" step="1">
-                    <input class="Da" type="number" min="-999" max="999" step="1">
-                    <input class="Vi" type="number" min="-999" max="999" step="1">
+                <div class="td Others">
+                    <div class="inner_row">
+                        <input class="Vo" type="number" min="-999" max="999" step="1">
+                        <input class="Da" type="number" min="-999" max="999" step="1">
+                        <input class="Vi" type="number" min="-999" max="999" step="1">
+                    </div>
+                    <div class="inner_row">
+                        <input class="Vo" type="number" min="-999" max="999" step="1">
+                        <input class="Da" type="number" min="-999" max="999" step="1">
+                        <input class="Vi" type="number" min="-999" max="999" step="1">
+                    </div>
                 </div>
                 <div class="td Sum inner_row">
                     <div class="Vo"> - </div>
@@ -464,22 +564,29 @@
                     <div class="Vi"> - </div>
                 </div>
             </div>
+
             <div class="tr">
                 <div class="td">16</div>
                 <div class="td">最終試験</div>
-                <div class="td base inner_row">
-                    <div class="radio checked" data-bonus="fix">30</div>
+                <div class="td base">
+                    <div class="inner_row">
+                        <div class="radio checked" data-bonus="fix">30</div>
+                    </div>
                 </div>
-                <div class="td inc inner_row">
-                    <div class="td Vo checked"> - </div>
-                    <div class="td Da checked"> - </div>
-                    <div class="td Vi checked"> - </div>
-                    <div class="td Off"> - </div>
+                <div class="td inc">
+                    <div class="inner_row">
+                        <div class="td Vo checked"> - </div>
+                        <div class="td Da checked"> - </div>
+                        <div class="td Vi checked"> - </div>
+                        <div class="td Off"> - </div>
+                    </div>
                 </div>
-                <div class="td Others inner_row">
-                    <input class="Vo" type="number" min="-999" max="999" step="1">
-                    <input class="Da" type="number" min="-999" max="999" step="1">
-                    <input class="Vi" type="number" min="-999" max="999" step="1">
+                <div class="td Others">
+                    <div class="inner_row">
+                        <input class="Vo" type="number" min="-999" max="999" step="1">
+                        <input class="Da" type="number" min="-999" max="999" step="1">
+                        <input class="Vi" type="number" min="-999" max="999" step="1">
+                    </div>
                 </div>
                 <div class="td Sum inner_row">
                     <div class="Vo"> - </div>

@@ -8,6 +8,7 @@ const config_bonus = {
     "fix": [],
     "lesson": [str.lesson_bonus, str.lesson_fix_inc],
     "lesson_sp": [str.lesson_bonus, str.lesson_fix_inc, str.lesson_sp_fix_inc],
+    "lesson_bonus": [str.lesson_bonus],
 }
 const param = ["Vo", "Da", "Vi"];
 
@@ -15,19 +16,28 @@ function update_inc() {
     const elm = document.querySelector("#schedule").querySelectorAll(".tr:not(.h)")
 
     elm.forEach((elm) => {
-        elm_base = elm.querySelector(".base .checked")
-        if (elm_base) {
+        let elm_bases = elm.querySelectorAll(".base>*")
+        let elm_incs = elm.querySelectorAll(".inc>*")
+        const flg_int = (1 == elm_bases.length)
+        elm_bases.forEach((elm_base, num) => {
+            elm_base = elm_base.querySelector(".checked")
+            if (!elm_base) return;
+
             const base_v = parseInt(elm_base.textContent)
             let inc = { "Vo": base_v, "Da": base_v, "Vi": base_v, }
             const bonus = config_bonus[elm_base.dataset.bonus]
+
+            // レッスンボーナス
             if (bonus.includes(str.lesson_bonus)) {
                 const row = document.querySelector(`.${str.lesson_bonus}`);
                 param.forEach(p => {
                     let b = row.querySelector(`input.${p}`).value
                     b = b ? b : "0";
-                    inc[p] = Math.floor(inc[p] * (100 + parseFloat(b)) / 100)
+                    // inc[p] = Math.floor(inc[p] * (100 + parseFloat(b)) / 100)
+                    inc[p] = inc[p] * (100 + parseFloat(b)) / 100
                 })
             }
+            // レッスン終了時上昇
             if (bonus.includes(str.lesson_fix_inc)) {
                 const row = document.querySelector(`.${str.lesson_fix_inc}`);
                 param.forEach(p => {
@@ -37,6 +47,7 @@ function update_inc() {
                 })
 
             }
+            // SPレッスン終了時上昇
             if (bonus.includes(str.lesson_sp_fix_inc)) {
                 const row = document.querySelector(`.${str.lesson_sp_fix_inc}`);
                 param.forEach(p => {
@@ -46,17 +57,15 @@ function update_inc() {
                 })
 
             }
+
             param.forEach(p => {
-                elm_s = elm.querySelector(`.inc>.${p}`)
-                if (elm_s) {
-                    elm_s.textContent = inc[p]
-                }
+                const elm_s = elm_incs[num].querySelector(`:scope>.${p}`)
+                if (!elm_s) return;
+                elm_s.textContent = flg_int ? Math.floor(inc[p]) : inc[p]
 
             })
-        }
 
-
-
+        })
 
     })
 }
@@ -78,12 +87,21 @@ function update_sum() {
     // 加算
     elm.forEach(tr => {
         param.forEach(p => {
-            const c = tr.querySelector(`.inc>.checked.${p}`)
-            sum[p] += c ? c.textContent ? parseInt(c.textContent) : 0 : 0
-            const i = tr.querySelector(`.Others>.${p}`)
-            sum[p] += i ? i.value ? parseInt(i.value) : 0 : 0
-            const s = tr.querySelector(`.Sum>.${p}`)
-            s.textContent = sum[p]
+            const c = tr.querySelectorAll(`.inc .checked.${p}`)
+            let lb = 0
+            c.forEach(c => {
+                lb += c.textContent ? parseFloat(c.textContent) : 0
+            })
+            lb = Math.floor(lb)
+            const i = tr.querySelectorAll(`.Others .${p}`)
+            i.forEach(i => {
+                lb += i.value ? parseInt(i.value) : 0
+            })
+            sum[p]+=lb
+            const s = tr.querySelector(`.Sum .${p}`)
+            if (s && s.textContent) {
+                s.textContent = sum[p]
+            }
         })
     })
 }
@@ -111,7 +129,7 @@ function init() {
         })
     })
 
-    document.querySelectorAll(".Others>input").forEach(elm => {
+    document.querySelectorAll(".Others input").forEach(elm => {
         elm.addEventListener("change", update_sum)
     })
 
