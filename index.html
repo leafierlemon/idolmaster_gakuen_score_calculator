@@ -283,6 +283,13 @@
         }
 
         window.addEventListener("load", () => {
+            const params = new URL(document.location).searchParams;
+            const vo=parseInt(params.get("vo"));
+            const da=parseInt(params.get("da"));
+            const vi=parseInt(params.get("vi"));
+            document.getElementById("Vo").value=vo?vo:0
+            document.getElementById("Da").value=da?da:0
+            document.getElementById("Vi").value=vi?vi:0
             update_status()
             // update_result()
         })

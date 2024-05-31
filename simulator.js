@@ -151,6 +151,13 @@ function init() {
     document.querySelectorAll(".Others input").forEach(elm => {
         elm.addEventListener("change", update_sum)
     })
+    document.getElementById("exam_score_link").addEventListener("click",(event)=>{
+        let vo = parseInt(document.getElementById("link_param_vo").textContent)
+        let da = parseInt(document.getElementById("link_param_da").textContent)
+        let vi = parseInt(document.getElementById("link_param_vi").textContent)
+
+        window.open(`./index.html?vo=${vo}&da=${da}&vi=${vi}`,"leafierlemon.gakumas.scorecalc")
+    })
 
     update_table()
 }
