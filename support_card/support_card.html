@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="学マス　サポートカードによるパラメータへの影響値の計算">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>学マス サポートカードのパラメータ影響</title>
+
+    <style>
+        .table {
+            display: table;
+            border-collapse: separate;
+            border-spacing: 5px;
+        }
+
+        .th {
+            display: table-row;
+            font-weight: bold;
+        }
+
+        .tr {
+            display: table-row;
+        }
+
+        .td {
+            display: table-cell;
+            text-align: center;
+            justify-content: center;
+            vertical-align: middle;
+        }
+
+        .h {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="../toc.html">[TOC]</a>
+    <div>
+        <h3>学マス サポートカードのアビリティによるパラメータへの影響</h3>
+    </div>
+
+    <div class="table" id="abilities">
+        <div class="tr h">
+            <div class="td">条件</div>
+            <div class="td">回数</div>
+        </div>
+
+        <div class="tr" id="レッスンボーナス">
+            <div class="td">レッスンボーナス(100*)</div>
+            <div class="td">
+                <input type="number" min="0" value="7.3">
+            </div>
+        </div>
+        <div class="tr" id="初期パラメータ上昇">
+            <div class="td">初期パラメータ上昇</div>
+            <div class="td">
+                <input type="number" min="1" value="1">
+            </div>
+        </div>
+        <div class="tr" id="レッスン">
+            <div class="td">レッスン終了時</div>
+            <div class="td">
+                <input type="number" min="0" value="4">
+            </div>
+        </div>
+        <div class="tr" id="通常レッスン">
+            <div class="td">通常レッスン終了時</div>
+            <div class="td">
+                <input type="number" min="0" value="3">
+            </div>
+        </div>
+        <div class="tr" id="SPレッスン">
+            <div class="td">SPレッスン終了時</div>
+            <div class="td">
+                <input type="number" min="0" value="2">
+            </div>
+        </div>
+        <div class="tr" id="試験">
+            <div class="td">試験</div>
+            <div class="td">
+                <input type="number" min="0" value="1">
+            </div>
+        </div>
+
+        <div class="tr" id="休む">
+            <div class="td">休む</div>
+            <div class="td">
+                <input type="number" min="0" value="4">
+            </div>
+        </div>
+
+        <div class="tr" id="活動支給">
+            <div class="td">活動支給</div>
+            <div class="td">
+                <input type="number" min="0" value="4">
+            </div>
+        </div>
+
+        <div class="tr" id="お出かけ">
+            <div class="td">お出かけ</div>
+            <div class="td">
+                <input type="number" min="0" value="4">
+            </div>
+        </div>
+
+        <div class="tr" id="授業">
+            <div class="td">授業</div>
+            <div class="td">
+                <input type="number" min="0" value="3">
+            </div>
+        </div>
+        <div class="tr" id="相談">
+            <div class="td">相談</div>
+            <div class="td">
+                <input type="number" min="0" value="3">
+            </div>
+        </div>
+
+
+        <div class="tr" id="カード獲得">
+            <div class="td">カード獲得</div>
+            <div class="td">
+                <input type="number" min="0" value="14">
+            </div>
+        </div>
+        <div class="tr" id="アクティブカード獲得">
+            <div class="td">アクティブカード獲得</div>
+            <div class="td">
+                <input type="number" min="0" value="14">
+            </div>
+        </div>
+        <div class="tr" id="メンタルカード獲得">
+            <div class="td">メンタルカード獲得</div>
+            <div class="td">
+                <input type="number" min="0" value="14">
+            </div>
+        </div>
+
+        <div class="tr" id="カード強化">
+            <div class="td">カード強化</div>
+            <div class="td">
+                <input type="number" min="0" value="6">
+            </div>
+        </div>
+        <div class="tr" id="アクティブカード強化">
+            <div class="td">アクティブカード強化</div>
+            <div class="td">
+                <input type="number" min="0" value="6">
+            </div>
+        </div>
+        <div class="tr" id="メンタルカード強化">
+            <div class="td">メンタルカード強化</div>
+            <div class="td">
+                <input type="number" min="0" value="6">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="table" id="out"></div>
+
+
+    <script>
+        list = [
+            "レッスンボーナス",
+            "初期パラメータ上昇",
+            "レッスン",
+            "通常レッスン",
+            "SPレッスン",
+            "試験",
+            "休む",
+            "活動支給",
+            "お出かけ",
+            "授業",
+            "相談",
+            "カード獲得",
+            "アクティブカード獲得",
+            "メンタルカード獲得",
+            "カード強化",
+            "アクティブカード強化",
+            "メンタルカード強化",
+        ]
+        sup_cards = null;
+        window.addEventListener("load", () => {
+            fetch("./support_card.json").then(res => res.json()).then(data => {
+                sup_cards = data
+                update()
+            })
+            document.querySelectorAll("input").forEach(elm => {
+                elm.addEventListener("change", () => { update() })
+            })
+        })
+
+        function update() {
+            let coefficient=list.reduce((a,i) => {
+                a[i]=parseFloat(document.querySelector(`#${i} input`).value)
+                return a
+            },{})
+            // console.log(coefficient)
+            let card_impact=sup_cards.reduce((a,c) => {
+                impact=0
+                console.log(c)
+                console.log(c["アビリティ"])
+                Object.keys(c["アビリティ"]).forEach((key)=>{
+                    console.log(key)
+                    console.log(coefficient[key],c["アビリティ"][key])
+                    if(coefficient[key]){
+                        impact+=coefficient[key]*parseFloat(c["アビリティ"][key])
+                    }
+                })
+                r={}
+                c["影響値"]=impact
+                a.push(c)
+                return a
+            },[])
+
+
+            let result = card_impact.sort((a, b)=>{
+                return (a["影響値"] < b["影響値"]) ? 1 : -1;  //昇順の並び替え
+            });
+
+            document.getElementById("out").innerHTML=result.reduce((t,c)=>{
+                t+=`<div class="tr"><div class="td">${c["影響値"]}</div><div class="td">${c["属性"]}</div><div class="td">${c["レアリティ"]}</div><div class="td">${c["カード名"]}</div><div class="td">${JSON.stringify(c["アビリティ"])}</div></div>`
+                return t
+            },`<div class="tr h"><div class="td">影響値</div><div class="td">属性</div><div class="td">レアリティ</div><div class="td">カード名</div><div class="td">アビリティ</div></div>`)
+
+        }
+
+
+    </script>
+
+</body>
+
+</html>
