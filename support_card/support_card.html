@@ -183,6 +183,11 @@
             "アクティブカード強化",
             "メンタルカード強化",
         ]
+        event_status_up={
+            "R":20,
+            "SR":30,
+            "SSR":40,            
+        }
         sup_cards = null;
         window.addEventListener("load", () => {
             fetch("./support_card.json").then(res => res.json()).then(data => {
@@ -202,16 +207,17 @@
             // console.log(coefficient)
             let card_impact=sup_cards.reduce((a,c) => {
                 impact=0
-                console.log(c)
-                console.log(c["アビリティ"])
+                impact+=event_status_up[c["レアリティ"]]
+                // console.log(c)
+                // console.log(c["アビリティ"])
                 Object.keys(c["アビリティ"]).forEach((key)=>{
-                    console.log(key)
-                    console.log(coefficient[key],c["アビリティ"][key])
+                    // console.log(key)
+                    // console.log(coefficient[key],c["アビリティ"][key])
                     if(coefficient[key]){
                         impact+=coefficient[key]*parseFloat(c["アビリティ"][key])
                     }
                 })
-                r={}
+                // r={}
                 c["影響値"]=impact
                 a.push(c)
                 return a
