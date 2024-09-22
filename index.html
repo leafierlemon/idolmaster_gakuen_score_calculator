@@ -50,17 +50,22 @@
             <div class="tr">
                 <div class="td">Vo</div>
                 <div class="td">:</div>
-                <div class="td"><input class="update_status" id="Vo" type="number" min="0" max="1500" step="1"></div>
+                <div class="td"><input class="update_status" id="Vo" type="number" min="0" step="1"></div>
             </div>
             <div class="tr">
                 <div class="td">Da</div>
                 <div class="td">:</div>
-                <div class="td"><input class="update_status" id="Da" type="number" min="0" max="1500" step="1"></div>
+                <div class="td"><input class="update_status" id="Da" type="number" min="0" step="1"></div>
             </div>
             <div class="tr">
                 <div class="td">Vi</div>
                 <div class="td">:</div>
-                <div class="td"><input class="update_status" id="Vi" type="number" min="0" max="1500" step="1"></div>
+                <div class="td"><input class="update_status" id="Vi" type="number" min="0" step="1"></div>
+            </div>
+            <div class="tr">
+                <div class="td">Max</div>
+                <div class="td">:</div>
+                <div class="td"><input class="update_status" id="Max" type="number" min="0" step="1"></div>
             </div>
         </div>
         <div class="row">
@@ -124,11 +129,18 @@
                 <div class="td">必要スコア</div>
             </div>
             <div class="tr">
-                <div class="td"><input id="custom_target_result" type="number" min="0" max="15900" step="1"></div>
+                <div class="td"><input class="update_score" id="custom_target_result" type="number" min="0" max="99999" step="1"></div>
                 <div class="td">:</div>
                 <div class="td">---</div>
                 <div class="td">:</div>
                 <div class="td score" id="custom_target_result_data" data-target-result="0"></div>
+            </div>
+            <div class="tr">
+                <div class="td">14500</div>
+                <div class="td">:</div>
+                <div class="td">S+</div>
+                <div class="td">:</div>
+                <div class="td score" data-target-result="14500"></div>
             </div>
             <div class="tr">
                 <div class="td">13000</div>
@@ -197,15 +209,17 @@
             let Vo = parseInt(document.getElementById("Vo").value);
             let Da = parseInt(document.getElementById("Da").value);
             let Vi = parseInt(document.getElementById("Vi").value);
+            let Max = parseInt(document.getElementById("Max").value);
             Vo = Vo ? Vo : 0;
             Da = Da ? Da : 0;
             Vi = Vi ? Vi : 0;
+            Max = Max ? Max : 1800;
 
             // 試験後のステータス上昇
             const c = parseInt(document.getElementById("correction").value);
-            Vo = Math.min(Vo + c, 1500);
-            Da = Math.min(Da + c, 1500);
-            Vi = Math.min(Vi + c, 1500);
+            Vo = Math.min(Vo + c, Max);
+            Da = Math.min(Da + c, Max);
+            Vi = Math.min(Vi + c, Max);
 
             document.getElementById("Sum").value = Vo + Da + Vi
             update_result()
@@ -287,9 +301,11 @@
             const vo=parseInt(params.get("vo"));
             const da=parseInt(params.get("da"));
             const vi=parseInt(params.get("vi"));
+            const max=parseInt(params.get("max"));
             document.getElementById("Vo").value=vo?vo:0
             document.getElementById("Da").value=da?da:0
             document.getElementById("Vi").value=vi?vi:0
+            document.getElementById("Max").value=max?max:1800
             update_status()
             // update_result()
         })

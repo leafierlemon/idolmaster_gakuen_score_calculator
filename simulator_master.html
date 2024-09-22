@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="description" content="学マス育成シミュレーター">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>学マス育成シミュレーター</title>
+    <title>学マス育成シミュレーター　マスター</title>
 
     <script src="./simulator.js"></script>
     <link href="./simulator.css" rel="stylesheet" />
@@ -17,14 +17,15 @@
         <h3>学マス育成シミュレーター</h3>
         <p>
         <ul>
-            <li>難易度：プロ</li>
+            <li>難易度：マスター</li>
+            <li>レッスン・SPレッスン上限+60を想定</li>
+            <li>レッスン上限や失敗分は入力で修正可</li>
             <li>サポートイベントなどは「+その他」の項目で</li>
-            <li>レッスン失敗分は入力で修正可</li>
             <li>追い込み失敗分は「+その他」の項目で微調整</li>
         </ul>
         </p>
 
-        <div class="h">初期値・レッスン補正</div>
+        <div class="h">初期値・レッスン補正など</div>
         <div class="table" id="init">
             <div class="tr">
                 <div class="td h"></div>
@@ -77,11 +78,12 @@
                 <div class="td"><hr></div>
             </div>
             <div class="tr">
-                <div class="td">1</div>
-                <div class="td">レッスン</div>
+                <div class="td week">1</div>
+                <div class="td">授業</div>
                 <div class="td base">
                     <div class="inner_row">
-                        <input type="number" class="radio custom_base checked" data-bonus="lesson" value="60" min="0" max="60"/>
+                        <div class="radio checked" data-bonus="fix">50</div>
+                        <div class="radio" data-bonus="fix">25</div>
                     </div>
                 </div>
                 <div class="td inc">
@@ -110,9 +112,8 @@
                 <div class="td">授業</div>
                 <div class="td base">
                     <div class="inner_row">
-                        <div class="radio checked" data-bonus="fix">40</div>
-                        <div class="radio" data-bonus="fix">30</div>
-                        <div class="radio" data-bonus="fix">15</div>
+                        <div class="radio checked" data-bonus="fix">50</div>
+                        <div class="radio" data-bonus="fix">25</div>
                     </div>
                 </div>
                 <div class="td inc">
@@ -165,12 +166,40 @@
                 </div>
             </div>
             <div class="tr">
-                <div class="td">4</div>
+                <div class="td week">4</div>
+                <div class="td">---</div>
+                <div class="td base">
+                    <div class="inner_row">
+                    </div>
+                </div>
+                <div class="td inc">
+                    <div class="inner_row">
+                        <div class="Vo"> - </div>
+                        <div class="Da"> - </div>
+                        <div class="Vi"> - </div>
+                        <div class="td Off"> - </div>
+                    </div>
+                </div>
+                <div class="td Others">
+                    <div class="inner_row">
+                        <input class="Vo" type="number" min="-999" max="999" step="1">
+                        <input class="Da" type="number" min="-999" max="999" step="1">
+                        <input class="Vi" type="number" min="-999" max="999" step="1">
+                    </div>
+                </div>
+                <div class="td Sum inner_row">
+                    <div class="Vo"> - </div>
+                    <div class="Da"> - </div>
+                    <div class="Vi"> - </div>
+                </div>
+            </div>
+            <div class="tr">
+                <div class="td">5</div>
                 <div class="td">レッスン</div>
                 <div class="td base">
                     <div class="inner_row">
-                        <input type="number" class="radio custom_base checked" data-bonus="lesson_sp" value="90" min="0" max="90"/>
-                        <input type="number" class="radio custom_base" data-bonus="lesson" value="60" min="0" max="60"/>
+                        <input type="number" class="radio custom_base checked" data-bonus="lesson_sp" value="150" min="0" max="150"/>
+                        <input type="number" class="radio custom_base" data-bonus="lesson" value="120" min="0" max="120"/>
                     </div>
                 </div>
                 <div class="td inc">
@@ -195,7 +224,7 @@
                 </div>
             </div>
             <div class="tr">
-                <div class="td">5</div>
+                <div class="td">6</div>
                 <div class="td">---</div>
                 <div class="td base">
                     <div class="inner_row">
@@ -224,7 +253,7 @@
                 </div>
             </div>
             <div class="tr">
-                <div class="td">6</div>
+                <div class="td">7</div>
                 <div class="td">追い込み</div>
                 <div class="td base">
                     <div class="inner_row">
@@ -268,7 +297,7 @@
                 </div>
             </div>
             <div class="tr">
-                <div class="td">7</div>
+                <div class="td">8</div>
                 <div class="td">中間試験</div>
                 <div class="td base">
                     <div class="inner_row">
@@ -308,7 +337,7 @@
                 <div class="td"><hr></div>
             </div>
             <div class="tr">
-                <div class="td">8</div>
+                <div class="td">9</div>
                 <div class="td">---</div>
                 <div class="td base">
                     <div class="inner_row">
@@ -336,7 +365,7 @@
                 </div>
             </div>
             <div class="tr">
-                <div class="td week">9</div>
+                <div class="td week">10</div>
                 <div class="td">授業</div>
                 <div class="td base">
                     <div class="inner_row">
@@ -367,12 +396,12 @@
                 </div>
             </div>
             <div class="tr">
-                <div class="td">10</div>
+                <div class="td">11</div>
                 <div class="td">レッスン</div>
                 <div class="td base">
                     <div class="inner_row">
-                        <input type="number" class="radio custom_base checked" data-bonus="lesson_sp" value="170" min="0" max="170"/>
-                        <input type="number" class="radio custom_base" data-bonus="lesson" value="110" min="0" max="110"/>
+                        <input type="number" class="radio custom_base checked" data-bonus="lesson_sp" value="230" min="0" max="230"/>
+                        <input type="number" class="radio custom_base" data-bonus="lesson" value="170" min="0" max="170"/>
                     </div>
                 </div>
                 <div class="td inc">
@@ -398,13 +427,13 @@
             </div>
 
             <div class="tr">
-                <div class="td week">11</div>
-                <div class="td">授業（確率レッスン）</div>
+                <div class="td week">12</div>
+                <div class="td">授業</div>
                 <div class="td base">
                     <div class="inner_row">
                         <div class="radio checked" data-bonus="fix">110</div>
-                        <div class="radio" data-bonus="fix">40</div>
-                        <input type="number" class="radio custom_base" data-bonus="lesson" value="90" min="0" max="90"/>
+                        <div class="radio" data-bonus="fix">45</div>
+                        <!-- <input type="number" class="radio custom_base" data-bonus="lesson" value="90" min="0" max="90"/> -->
                     </div>
                 </div>
                 <div class="td inc">
@@ -428,54 +457,21 @@
                     <div class="Vi"> - </div>
                 </div>
             </div>
-
-            <div class="tr">
-                <div class="td">12</div>
-                <div class="td">レッスン</div>
-                <div class="td base">
-                    <div class="inner_row">
-                        <input type="number" class="radio custom_base checked" data-bonus="lesson_sp" value="200" min="0" max="200"/>
-                        <input type="number" class="radio custom_base" data-bonus="lesson" value="120" min="0" max="120"/>
-                    </div>
-                </div>
-                <div class="td inc">
-                    <div class="inner_row">
-                        <div class="td Vo radio"> - </div>
-                        <div class="td Da radio"> - </div>
-                        <div class="td Vi radio"> - </div>
-                        <div class="td Off radio checked"> - </div>
-                    </div>
-                </div>
-                <div class="td Others">
-                    <div class="inner_row">
-                        <input class="Vo" type="number" min="-999" max="999" step="1">
-                        <input class="Da" type="number" min="-999" max="999" step="1">
-                        <input class="Vi" type="number" min="-999" max="999" step="1">
-                    </div>
-                </div>
-                <div class="td Sum inner_row">
-                    <div class="Vo"> - </div>
-                    <div class="Da"> - </div>
-                    <div class="Vi"> - </div>
-                </div>
-            </div>
-
             <div class="tr">
                 <div class="td">13</div>
-                <div class="td">レッスン</div>
+                <div class="td">---</div>
                 <div class="td base">
                     <div class="inner_row">
-                        <input type="number" class="radio custom_base checked" data-bonus="lesson_sp" value="220" min="0" max="220"/>
-                        <input type="number" class="radio custom_base" data-bonus="lesson" value="150" min="0" max="150"/>
                     </div>
                 </div>
                 <div class="td inc">
                     <div class="inner_row">
-                        <div class="td Vo radio"> - </div>
-                        <div class="td Da radio"> - </div>
-                        <div class="td Vi radio"> - </div>
-                        <div class="td Off radio checked"> - </div>
+                        <div class="Vo"> - </div>
+                        <div class="Da"> - </div>
+                        <div class="Vi"> - </div>
+                        <div class="td Off"> - </div>
                     </div>
+
                 </div>
                 <div class="td Others">
                     <div class="inner_row">
@@ -493,6 +489,68 @@
 
             <div class="tr">
                 <div class="td">14</div>
+                <div class="td">レッスン</div>
+                <div class="td base">
+                    <div class="inner_row">
+                        <input type="number" class="radio custom_base checked" data-bonus="lesson_sp" value="260" min="0" max="260"/>
+                        <input type="number" class="radio custom_base" data-bonus="lesson" value="180" min="0" max="180"/>
+                    </div>
+                </div>
+                <div class="td inc">
+                    <div class="inner_row">
+                        <div class="td Vo radio"> - </div>
+                        <div class="td Da radio"> - </div>
+                        <div class="td Vi radio"> - </div>
+                        <div class="td Off radio checked"> - </div>
+                    </div>
+                </div>
+                <div class="td Others">
+                    <div class="inner_row">
+                        <input class="Vo" type="number" min="-999" max="999" step="1">
+                        <input class="Da" type="number" min="-999" max="999" step="1">
+                        <input class="Vi" type="number" min="-999" max="999" step="1">
+                    </div>
+                </div>
+                <div class="td Sum inner_row">
+                    <div class="Vo"> - </div>
+                    <div class="Da"> - </div>
+                    <div class="Vi"> - </div>
+                </div>
+            </div>
+
+            <div class="tr">
+                <div class="td">15</div>
+                <div class="td">レッスン</div>
+                <div class="td base">
+                    <div class="inner_row">
+                        <input type="number" class="radio custom_base checked" data-bonus="lesson_sp" value="280" min="0" max="280"/>
+                        <input type="number" class="radio custom_base" data-bonus="lesson" value="210" min="0" max="210"/>
+                    </div>
+                </div>
+                <div class="td inc">
+                    <div class="inner_row">
+                        <div class="td Vo radio"> - </div>
+                        <div class="td Da radio"> - </div>
+                        <div class="td Vi radio"> - </div>
+                        <div class="td Off radio checked"> - </div>
+                    </div>
+                </div>
+                <div class="td Others">
+                    <div class="inner_row">
+                        <input class="Vo" type="number" min="-999" max="999" step="1">
+                        <input class="Da" type="number" min="-999" max="999" step="1">
+                        <input class="Vi" type="number" min="-999" max="999" step="1">
+                    </div>
+                </div>
+                <div class="td Sum inner_row">
+                    <div class="Vo"> - </div>
+                    <div class="Da"> - </div>
+                    <div class="Vi"> - </div>
+                </div>
+            </div>
+
+            <div class="tr">
+                <div class="td">16</div>
                 <div class="td">---</div>
                 <div class="td base">
                     <div class="inner_row">
@@ -521,7 +579,7 @@
                 </div>
             </div>
             <div class="tr">
-                <div class="td">15</div>
+                <div class="td">17</div>
                 <div class="td">追い込み</div>
                 <div class="td base">
                     <div class="inner_row">
@@ -564,7 +622,7 @@
                     <div class="Vi" id="link_param_vi"> - </div>
                 </div>
                 <div class="td SumAll inner_row">
-                    <div data-max="1470"></div>
+                    <div data-max="1770"></div>
                 </div>
                 <div class="td">
                     <button id="exam_score_link" type="button">スコア計算を開く</button>
@@ -572,7 +630,7 @@
             </div>
 
             <div class="tr">
-                <div class="td">16</div>
+                <div class="td">18</div>
                 <div class="td">最終試験</div>
                 <div class="td base">
                     <div class="inner_row">
@@ -603,7 +661,7 @@
                     <div class="Vi"> - </div>
                 </div>
                 <div class="td SumAll inner_row">
-                    <div id="link_param_max" data-max="1500"></div>
+                    <div id="link_param_max" data-max="1800"></div>
                 </div>
             </div>
 

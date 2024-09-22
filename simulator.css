@@ -62,6 +62,9 @@
 
 .Off {
     background-color: #d0ffd0;
+}
+
+.Off:not(input) {
     border-color: #d0ffd0 !important;
 }
 

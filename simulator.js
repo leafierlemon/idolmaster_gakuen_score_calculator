@@ -155,8 +155,9 @@ function init() {
         let vo = parseInt(document.getElementById("link_param_vo").textContent)
         let da = parseInt(document.getElementById("link_param_da").textContent)
         let vi = parseInt(document.getElementById("link_param_vi").textContent)
+        let max = parseInt(document.getElementById("link_param_max").dataset.max)
 
-        window.open(`./index.html?vo=${vo}&da=${da}&vi=${vi}`,"leafierlemon.gakumas.scorecalc")
+        window.open(`./index.html?vo=${vo}&da=${da}&vi=${vi}&max=${max}`,"leafierlemon.gakumas.scorecalc")
     })
 
     update_table()
