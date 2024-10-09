@@ -136,6 +136,13 @@
                 <div class="td score" id="custom_target_result_data" data-target-result="0"></div>
             </div>
             <div class="tr">
+                <div class="td">16000</div>
+                <div class="td">:</div>
+                <div class="td">SS</div>
+                <div class="td">:</div>
+                <div class="td score" data-target-result="16000"></div>
+            </div>
+            <div class="tr">
                 <div class="td">14500</div>
                 <div class="td">:</div>
                 <div class="td">S+</div>
@@ -265,6 +272,9 @@
             sum = sum ? sum : 0;
             status_score = status_impact(sum);
 
+            // 目標評価値更新
+            document.getElementById("custom_target_result_data").dataset.targetResult = document.getElementById("custom_target_result").value;
+
             document.querySelectorAll(".score").forEach(e => {
                 e.textContent = result_to_score(e.dataset.targetResult, rank_score, status_score);
             }
@@ -285,10 +295,10 @@
         }
 
         // 目標評価値更新
-        function update_target_result(e) {
-            document.getElementById("custom_target_result_data").dataset.targetResult = document.getElementById("custom_target_result").value;
-            update_score()
-        }
+        // function update_target_result(e) {
+        //     document.getElementById("custom_target_result_data").dataset.targetResult = document.getElementById("custom_target_result").value;
+        //     update_score()
+        // }
 
 
         // 上限ありのminからの値
